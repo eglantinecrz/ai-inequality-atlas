@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Inequality Atlas</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Playfair+Display:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/topojson-client@3"></script>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">◎ AI Inequality Atlas</div>
+        <div class="badge">PROTOTYPE Vanilla JS</div>
+    </header>
+
+    <main class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <button id="btn-back" class="btn-back" style="display: none;">← VUE GLOBALE</button>
+                <span class="eyebrow" id="sidebar-eyebrow">VUE GLOBALE</span>
+                <h2 id="sidebar-title">Investissement IA</h2>
+                <p id="sidebar-desc">Carte des investissements privés. Cliquez sur un marqueur rouge (ex: Allemagne) pour explorer ses flux.</p>
+            </div>
+
+            <div id="country-details" class="country-details" style="display: none;">
+                <div class="filter-group">
+                    <label for="flow-filter" class="filter-label">EXPLORER LES FLUX :</label>
+                    <select id="flow-filter" class="dropdown">
+                        <option value="materials">D'où viennent les matériaux ?</option>
+                        <option value="labor">D'où vient la main d'œuvre ?</option>
+                        <option value="energy">D'où vient l'énergie ?</option>
+                        <option value="talent">Où vont les talents ?</option>
+                    </select>
+                </div>
+                <div id="flows-list" class="flows-list"></div>
+            </div>
+        </aside>
+
+        <section class="map-container" id="map-container"></section>
+    </main>
+
+    <script src="/static/js/app.js?v=5"></script>
+</body>
+</html>

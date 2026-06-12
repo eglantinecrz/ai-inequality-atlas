@@ -1,0 +1,14 @@
+# Environnement virtuel Python
+venv/
+env/
+
+# Fichiers cache Python
+__pycache__/
+*.pyc
+
+# Base de données locale (optionnel, mais recommandé si elle est générée par le scraper)
+atlas.db
+*.sqlite3
+
+# Fichiers système OS
+.DS_Store
