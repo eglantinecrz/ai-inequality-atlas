@@ -5,42 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Inequality Atlas</title>
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Playfair+Display:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/style.css?v=10">
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://unpkg.com/topojson-client@3"></script>
 </head>
 <body>
     <header class="navbar">
-        <div class="logo">◎ AI Inequality Atlas</div>
-        <div class="badge">PROTOTYPE Vanilla JS</div>
+        <div class="logo"> AI Inequality Atlas</div>
+        <div class="badge">PROTOTYPE MAP</div>
     </header>
 
     <main class="layout">
         <aside class="sidebar">
             <div class="sidebar-header">
-                <button id="btn-back" class="btn-back" style="display: none;">← VUE GLOBALE</button>
-                <span class="eyebrow" id="sidebar-eyebrow">VUE GLOBALE</span>
-                <h2 id="sidebar-title">Investissement IA</h2>
-                <p id="sidebar-desc">Carte des investissements privés. Cliquez sur un marqueur rouge (ex: Allemagne) pour explorer ses flux.</p>
+                <span class="eyebrow" id="sidebar-eyebrow">GLOBAL VIEW</span>
+                <h2 id="sidebar-title">AI Investment</h2>
+                <p id="sidebar-desc">Select an indicator below. The map will automatically color-code each country based on its data volumes.</p>
             </div>
 
-            <div id="country-details" class="country-details" style="display: none;">
+            <div id="country-details" class="country-details">
                 <div class="filter-group">
-                    <label for="flow-filter" class="filter-label">EXPLORER LES FLUX :</label>
-                    <select id="flow-filter" class="dropdown">
-                        <option value="materials">D'où viennent les matériaux ?</option>
-                        <option value="labor">D'où vient la main d'œuvre ?</option>
-                        <option value="energy">D'où vient l'énergie ?</option>
-                        <option value="talent">Où vont les talents ?</option>
+                    <label for="analysis-axis" class="filter-label">ANALYSIS AXIS :</label>
+                    <select id="analysis-axis" class="dropdown">
+                        <option value="economic">Economic</option>
+                        <option value="environmental">Environmental</option>
+                        <option value="social">Social</option>
                     </select>
                 </div>
-                <div id="flows-list" class="flows-list"></div>
+                
+                <div class="filter-group" id="economic-detail-group" style="display: block;">
+                    <label class="filter-label">ECONOMIC INDICATORS :</label>
+                    <div class="checkbox-group" id="economic-checkboxes">
+                        <label><input type="radio" name="map-metric" value="gdp" data-label="GDP gains"> GDP gains</label>
+                        <label><input type="radio" name="map-metric" value="sector_gains" data-label="Sector Growth"> Sector Growth</label>
+                        <label><input type="radio" name="map-metric" value="hq_locations" data-label="Headquarters"> Headquarters of AI</label>
+                        <label><input type="radio" name="map-metric" value="publications" data-label="Publications"> AI research publications</label>
+                    </div>
+                </div>
+                
+                <div class="filter-group" id="environmental-detail-group" style="display: none;">
+                    <label class="filter-label">ENVIRONMENTAL INDICATORS :</label>
+                    <div class="checkbox-group" id="environmental-checkboxes">
+                        <label><input type="radio" name="map-metric" value="data_centers" data-label="Data Centers"> Data centers</label>
+                        <label><input type="radio" name="map-metric" value="water_consumption" data-label="Water Consumption"> Water consumption</label>
+                        <label><input type="radio" name="map-metric" value="co2_emissions" data-label="CO2 Emissions"> CO2 emissions</label>
+                        <label><input type="radio" name="map-metric" value="land_footprint" data-label="Land Footprint"> Land footprint</label>
+                        <label><input type="radio" name="map-metric" value="electricity" data-label="Electricity"> Electricity consumption</label>
+                    </div>
+                </div> 
+                
+                <div class="filter-group" id="social-detail-group" style="display: none;">
+                    <label class="filter-label">SOCIAL INDICATORS :</label>
+                    <div class="checkbox-group" id="social-checkboxes">
+                        <label><input type="radio" name="map-metric" value="job_creation" data-label="Job Creation"> Job Creation</label>
+                        <label><input type="radio" name="map-metric" value="education" data-label="Education"> Education & Access</label>
+                        <label><input type="radio" name="map-metric" value="ethics" data-label="Ethics Policies"> AI Ethics & Policies</label>
+                        <label><input type="radio" name="map-metric" value="diversity" data-label="Diversity"> Diversity in AI</label>
+                    </div>
+                </div> 
+                
+                <div id="analysis-desc" class="analysis-desc"></div>
             </div>
         </aside>
 
-        <section class="map-container" id="map-container"></section>
+        <section class="map-container" id="map-container">
+            <div id="map-legend" class="map-legend" style="display: none;">
+                <div class="legend-title" id="legend-title">Indicator</div>
+                <div class="legend-bar" id="legend-bar"></div>
+                <div class="legend-labels">
+                    <span id="legend-min">0</span>
+                    <span id="legend-max">100</span>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <script src="/static/js/app.js?v=5"></script>
+    <div id="tooltip" class="tooltip" style="opacity:0; position:absolute; pointer-events:none;"></div>
+
+    <script src="/static/js/app.js?v=10"></script>
 </body>
 </html>

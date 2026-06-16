@@ -7,7 +7,6 @@
     --map-land: #E1E1E1; 
     --map-land-border: #FFFFFF;
     
-    /* Couleurs Focus */
     --c-materials: #5A9E7A;
     --c-labor: #9B72C8;
     --c-energy: #F5A623;
@@ -25,29 +24,74 @@ body { font-family: var(--font-sans); background: var(--bg-color); color: var(--
 .logo { font-family: var(--font-serif); font-weight: 600; font-size: 16px; }
 .badge { font-family: var(--font-mono); font-size: 10px; color: #A0AEC0; }
 
-.layout { display: flex; flex: 1; overflow: hidden; }
-.sidebar { width: 320px; background: white; border-right: 1px solid var(--border-color); display: flex; flex-direction: column; z-index: 5; }
+.layout { display: flex; flex: 1; overflow: hidden; height: 100%; }
+.sidebar { width: 280px; background: white; border-right: 1px solid var(--border-color); display: flex; flex-direction: column; z-index: 5; overflow-y: auto; }
 .sidebar-header { padding: 24px; border-bottom: 1px solid var(--border-color); }
 .eyebrow { font-family: var(--font-mono); font-size: 10px; color: #D93025; letter-spacing: 0.1em; display: block; margin-bottom: 8px; }
 .sidebar h2 { font-family: var(--font-serif); font-size: 24px; margin-bottom: 8px; }
-.sidebar p { font-size: 13px; color: #718096; line-height: 1.6; }
-
-.btn-back { background: none; border: none; color: #A0AEC0; font-family: var(--font-mono); font-size: 10px; cursor: pointer; margin-bottom: 16px; }
-.btn-back:hover { color: #2D3748; }
+.sidebar p { font-size: 13px; color: #718096; line-height: 1.6; whitespace: pre-line; }
 
 .country-details { padding: 24px; }
 .filter-label { display: block; font-family: var(--font-mono); font-size: 10px; color: #A0AEC0; margin-bottom: 8px; letter-spacing: 0.05em;}
 .dropdown { width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; font-family: var(--font-sans); font-size: 13px; outline: none; background: #F7FAFC; margin-bottom: 20px; cursor: pointer; }
 
-.flows-list { display: flex; flex-direction: column; gap: 10px; }
-.flow-item { padding: 10px; background: #F7FAFC; border-radius: 6px; border-left: 3px solid; }
-.flow-item strong { display: block; font-size: 13px; margin-bottom: 2px;}
-.flow-item span { font-size: 11px; color: #718096; font-family: var(--font-mono);}
+.analysis-desc { padding: 14px 0 10px; font-size: 13px; color: #4A5568; line-height: 1.6; }
 
-.map-container { flex: 1; background: var(--map-sea); position: relative; }
-.country { stroke: var(--map-land-border); stroke-width: 0.5px; transition: fill 0.4s, opacity 0.4s; }
-.country.dimmed { fill: #EBEBEB !important; } 
+.map-container { flex: 1; background: var(--map-sea); position: relative; width: 100%; height: 100%; }
 
-.flow-line { fill: none; stroke-width: 1.5px; stroke-dasharray: 4, 4; opacity: 0.8; }
-.focus-ring { fill: none; stroke: #F5A623; stroke-dasharray: 3, 3; animation: spin 10s linear infinite; }
-@keyframes spin { 100% { transform: rotate(360deg); } }
+.country { stroke: var(--map-land-border); stroke-width: 0.5px; transition: fill 0.5s ease; }
+
+/* Tooltip (Bulle au survol) */
+.tooltip {
+    background: rgba(17,24,39,0.95);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    line-height: 1.4;
+    box-shadow: 0 4px 14px rgba(2,6,23,0.15);
+    pointer-events: none;
+    transition: opacity 0.08s ease, transform 0.08s ease;
+    z-index: 40;
+    max-width: 250px;
+}
+.tooltip strong { display: block; margin-bottom: 4px; font-size: 13px; color: #F7FAFC; }
+.tooltip .metric-val { font-family: var(--font-mono); font-size: 14px; font-weight: bold; color: #63B3ED; }
+
+/* Styles pour les Boutons Radio */
+.checkbox-group { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+.checkbox-group label { font-size: 13px; display: flex; align-items: flex-start; gap: 8px; cursor: pointer; color: #4A5568; line-height: 1.4; }
+.checkbox-group input[type="radio"] { margin: 0; margin-top: 2px; cursor: pointer; }
+
+/* Styles pour la Légende (Modifiés pour être en bas à gauche et sans cadre) */
+.map-legend {
+    position: absolute;
+    bottom: 40px;
+    left: 40px; /* Fixé en bas à gauche */
+    width: 260px;
+    z-index: 20;
+    /* Le fond blanc, le padding et la bordure ont été supprimés */
+}
+.legend-title {
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    color: #4A5568; /* Légèrement assombri pour rester lisible sur la mer */
+    letter-spacing: 0.05em;
+    text-align: left; /* Aligné à gauche au lieu de centré */
+}
+.legend-bar {
+    height: 10px;
+    border-radius: 5px;
+    width: 100%;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08); /* Petite ombre légère pour faire ressortir le dégradé */
+}
+.legend-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #4A5568;
+    margin-top: 6px;
+    font-family: var(--font-mono);
+}
