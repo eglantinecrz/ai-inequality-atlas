@@ -13,3 +13,5 @@ atlas.db
 # Fichiers système OS
 .DS_Store
 .venv/
+
+.env

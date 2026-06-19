@@ -7,6 +7,10 @@ import sqlite3
 import smtplib
 import ssl
 from email.message import EmailMessage
+from dotenv import load_dotenv
+
+# Charge les variables cachées du fichier .env
+load_dotenv()
 
 app = FastAPI()
 
@@ -134,7 +138,6 @@ async def get_data(year: str = "2024"):
                     'copper': safe_float(get_val(['copper'])),
                     'patents': safe_float(get_val(['patents', 'patent'])),
                     'chatgpt': safe_float(get_val(['chatgpt', 'chat_gpt'])),
-                    # NOUVEAUTÉ : regulation garde son texte (pas de safe_float)
                     'regulation': get_val(['regulation', 'regulations'])
                 }
 
@@ -161,9 +164,14 @@ class ContactForm(BaseModel):
 async def send_contact_email(form: ContactForm):
     SMTP_SERVER = "smtp.gmail.com" 
     SMTP_PORT = 465
-    SENDER_EMAIL = "cruzeglantine@gmail.com" 
-    SENDER_PASSWORD = "nsimjtbvxnfbscuy" 
-    RECEIVER_EMAIL = "cruzeglantine@gmail.com" 
+    
+    # Récupération sécurisée depuis le fichier .env
+    SENDER_EMAIL = os.getenv("SENDER_EMAIL")
+    SENDER_PASSWORD = os.getenv("SENDER_PASSWORD")
+    RECEIVER_EMAIL = os.getenv("SENDER_EMAIL") 
+
+    if not SENDER_EMAIL or not SENDER_PASSWORD:
+        raise HTTPException(status_code=500, detail="Configuration email manquante sur le serveur.")
 
     msg = EmailMessage()
     msg.set_content(f"Nouveau message reçu depuis l'Atlas IA !\n\nNom : {form.name}\nEmail : {form.email}\n\nMessage :\n{form.message}")
