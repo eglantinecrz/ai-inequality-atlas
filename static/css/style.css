@@ -543,3 +543,61 @@ body {
 .download-csv-btn:hover {
     color: #2D3748;
 }
+
+/* =========================================
+   📱 VERSION MOBILE (RESPONSIVE DESIGN)
+   ========================================= */
+@media (max-width: 768px) {
+    /* 1. Ajustement des textes de la page d'accueil */
+    .landing-title {
+        font-size: 42px; /* Titre un peu plus petit */
+    }
+    .landing-subtitle {
+        font-size: 16px;
+    }
+
+    /* 2. On empile les cartes (au lieu de les mettre côte à côte) */
+    .landing-grid {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    /* 3. On empile les statistiques et on réduit la taille des chiffres */
+    .landing-stats {
+        flex-direction: column;
+        gap: 32px;
+        border-top: none; /* Allège le design sur mobile */
+        padding-top: 16px;
+        margin-bottom: 20px;
+    }
+    .stat-number {
+        font-size: 48px;
+    }
+
+    /* 4. Si la carte et le panneau d'info sont côte à côte, on les empile */
+    /* (Ajuste les noms de classes si ton conteneur s'appelle autrement) */
+    .app-content { 
+        flex-direction: column; 
+    }
+    
+    .info-panel {
+        width: 100%; /* Prend toute la largeur de l'écran */
+        border-left: none;
+        border-top: 1px solid var(--border-color);
+        /* Permet de scroller dans le panneau s'il est en bas */
+        max-height: 50vh; 
+        overflow-y: auto;
+    }
+
+    #map-container {
+        height: 50vh; /* La carte prend la moitié supérieure de l'écran */
+        width: 100%;
+    }
+
+    /* 5. Ajustement des fenêtres pop-up (Sources) pour les petits écrans */
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+        padding: 20px;
+    }
+}
