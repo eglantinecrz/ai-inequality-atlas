@@ -190,3 +190,9 @@ async def send_contact_email(form: ContactForm):
     except Exception as e:
         print(f"Erreur lors de l'envoi de l'email : {e}")
         raise HTTPException(status_code=500, detail="Le serveur de messagerie est indisponible.")
+    
+    if __name__ == "__main__":
+    import uvicorn
+    # Le port doit être dynamique pour que Render puisse l'attribuer
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
