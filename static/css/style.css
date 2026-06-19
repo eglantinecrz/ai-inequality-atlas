@@ -542,61 +542,41 @@ body {
 }
 .download-csv-btn:hover {
     color: #2D3748;
-}
-/* =========================================
-   📱 VERSION MOBILE (ROBUSTE)
+}/* =========================================
+   ADAPTATION MOBILE (APPROCHE DOUCE)
    ========================================= */
 @media (max-width: 768px) {
-    /* 1. La page d'accueil doit être plus simple */
-    .landing-content {
-        padding: 20px;
-    }
-    
-    .landing-title { font-size: 32px !important; }
-    
-    /* Force l'empilement vertical absolu */
-    .landing-grid {
-        display: flex !important;
-        flex-direction: column !important;
-        width: 100% !important;
+    /* 1. On libère le scroll bloqué par le scroll-snap */
+    body {
+        height: auto !important;
+        overflow-y: auto !important;
+        scroll-snap-type: none !important;
     }
 
-    .landing-card {
-        margin-bottom: 10px !important;
-        width: 100% !important;
-        padding: 15px !important;
-    }
-
-    /* 2. On s'assure que la carte et le texte ne se chevauchent pas */
+    /* 2. On passe la section application en mode vertical */
     .app-section {
         flex-direction: column !important;
         height: auto !important;
-        overflow-y: visible !important;
     }
 
+    /* 3. On donne de la place à la carte */
     #map-container {
-        height: 300px !important; /* Une hauteur fixe pour la carte sur mobile */
+        height: 350px !important;
         width: 100% !important;
+        flex: none !important;
     }
 
+    /* 4. On donne de la place au panneau d'info */
     .info-panel {
         width: 100% !important;
         height: auto !important;
-        position: relative !important;
+        flex: none !important;
+        padding: 20px !important;
     }
 
-    /* 3. Ajustement des statistiques */
-    .landing-stats {
-        display: flex !important;
+    /* 5. On empile les cartes de la page d'accueil */
+    .landing-grid {
         flex-direction: column !important;
-        align-items: center !important;
-    }
-    
-    .stat-item {
-        margin-bottom: 20px !important;
-    }
-
-    .stat-number {
-        font-size: 36px !important; /* Plus petit pour éviter les retours à la ligne */
+        gap: 20px !important;
     }
 }
