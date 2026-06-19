@@ -542,42 +542,40 @@ body {
 }
 .download-csv-btn:hover {
     color: #2D3748;
-}/* =========================================
-   📱 VERSION MOBILE (REPRISE TOTALE)
+}
+/* =========================================
+   📱 VERSION MOBILE (ROBUSTE)
    ========================================= */
 @media (max-width: 768px) {
-    /* 1. On autorise la page à être plus longue que l'écran */
-    body {
-        overflow-y: auto !important;
-        height: auto !important;
-        scroll-snap-type: none !important; /* Désactive le snap pour le mobile */
+    /* 1. La page d'accueil doit être plus simple */
+    .landing-content {
+        padding: 20px;
     }
-
-    .app-section {
-        height: auto !important; /* Le conteneur s'adapte au contenu */
-        flex-direction: column !important;
-    }
-
-    /* 2. Titre et Landing Page */
-    .landing-page {
-        height: auto !important;
-        padding: 20px 0 !important;
-    }
-
-    .landing-title {
-        font-size: 32px !important;
-        margin-bottom: 10px !important;
-    }
-
+    
+    .landing-title { font-size: 32px !important; }
+    
+    /* Force l'empilement vertical absolu */
     .landing-grid {
         display: flex !important;
         flex-direction: column !important;
-        gap: 15px !important;
+        width: 100% !important;
     }
 
-    /* 3. Carte et Panneau Info */
+    .landing-card {
+        margin-bottom: 10px !important;
+        width: 100% !important;
+        padding: 15px !important;
+    }
+
+    /* 2. On s'assure que la carte et le texte ne se chevauchent pas */
+    .app-section {
+        flex-direction: column !important;
+        height: auto !important;
+        overflow-y: visible !important;
+    }
+
     #map-container {
-        height: 350px !important; /* Hauteur fixe pour la carte */
+        height: 300px !important; /* Une hauteur fixe pour la carte sur mobile */
         width: 100% !important;
     }
 
@@ -585,6 +583,20 @@ body {
         width: 100% !important;
         height: auto !important;
         position: relative !important;
-        padding-bottom: 50px !important;
+    }
+
+    /* 3. Ajustement des statistiques */
+    .landing-stats {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    
+    .stat-item {
+        margin-bottom: 20px !important;
+    }
+
+    .stat-number {
+        font-size: 36px !important; /* Plus petit pour éviter les retours à la ligne */
     }
 }
