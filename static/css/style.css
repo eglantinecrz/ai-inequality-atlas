@@ -543,61 +543,60 @@ body {
 .download-csv-btn:hover {
     color: #2D3748;
 }
-
 /* =========================================
-   📱 VERSION MOBILE (RESPONSIVE DESIGN)
+   📱 VERSION MOBILE (ROBUSTE)
    ========================================= */
 @media (max-width: 768px) {
-    /* 1. Ajustement des textes de la page d'accueil */
-    .landing-title {
-        font-size: 42px; /* Titre un peu plus petit */
-    }
-    .landing-subtitle {
-        font-size: 16px;
-    }
-
-    /* 2. On empile les cartes (au lieu de les mettre côte à côte) */
-    .landing-grid {
-        flex-direction: column;
-        gap: 16px;
-    }
-
-    /* 3. On empile les statistiques et on réduit la taille des chiffres */
-    .landing-stats {
-        flex-direction: column;
-        gap: 32px;
-        border-top: none; /* Allège le design sur mobile */
-        padding-top: 16px;
-        margin-bottom: 20px;
-    }
-    .stat-number {
-        font-size: 48px;
-    }
-
-    /* 4. Si la carte et le panneau d'info sont côte à côte, on les empile */
-    /* (Ajuste les noms de classes si ton conteneur s'appelle autrement) */
-    .app-content { 
-        flex-direction: column; 
+    /* 1. La page d'accueil doit être plus simple */
+    .landing-content {
+        padding: 20px;
     }
     
-    .info-panel {
-        width: 100%; /* Prend toute la largeur de l'écran */
-        border-left: none;
-        border-top: 1px solid var(--border-color);
-        /* Permet de scroller dans le panneau s'il est en bas */
-        max-height: 50vh; 
-        overflow-y: auto;
+    .landing-title { font-size: 32px !important; }
+    
+    /* Force l'empilement vertical absolu */
+    .landing-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+    }
+
+    .landing-card {
+        margin-bottom: 10px !important;
+        width: 100% !important;
+        padding: 15px !important;
+    }
+
+    /* 2. On s'assure que la carte et le texte ne se chevauchent pas */
+    .app-section {
+        flex-direction: column !important;
+        height: auto !important;
+        overflow-y: visible !important;
     }
 
     #map-container {
-        height: 50vh; /* La carte prend la moitié supérieure de l'écran */
-        width: 100%;
+        height: 300px !important; /* Une hauteur fixe pour la carte sur mobile */
+        width: 100% !important;
     }
 
-    /* 5. Ajustement des fenêtres pop-up (Sources) pour les petits écrans */
-    .modal-content {
-        width: 95%;
-        margin: 10% auto;
-        padding: 20px;
+    .info-panel {
+        width: 100% !important;
+        height: auto !important;
+        position: relative !important;
+    }
+
+    /* 3. Ajustement des statistiques */
+    .landing-stats {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    
+    .stat-item {
+        margin-bottom: 20px !important;
+    }
+
+    .stat-number {
+        font-size: 36px !important; /* Plus petit pour éviter les retours à la ligne */
     }
 }
