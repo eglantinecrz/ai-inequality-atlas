@@ -9,7 +9,6 @@ import ssl
 from email.message import EmailMessage
 from dotenv import load_dotenv
 
-# Charge les variables cachées du fichier .env
 load_dotenv()
 
 app = FastAPI()
@@ -165,7 +164,6 @@ async def send_contact_email(form: ContactForm):
     SMTP_SERVER = "smtp.gmail.com" 
     SMTP_PORT = 465
     
-    # Récupération sécurisée depuis le fichier .env
     SENDER_EMAIL = os.getenv("SENDER_EMAIL")
     SENDER_PASSWORD = os.getenv("SENDER_PASSWORD")
     RECEIVER_EMAIL = os.getenv("SENDER_EMAIL") 
@@ -191,7 +189,6 @@ async def send_contact_email(form: ContactForm):
         print(f"Erreur lors de l'envoi de l'email : {e}")
         raise HTTPException(status_code=500, detail="Le serveur de messagerie est indisponible.")
 
-# ATTENTION : Ce bloc doit être collé tout à gauche, sans aucun espace devant 
 
 if __name__ == "__main__":
     import uvicorn

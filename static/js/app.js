@@ -391,13 +391,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                 csvContent += row.join(";") + "\n";
             }
 
-            // Création du fichier "virtuel" et déclenchement du téléchargement
             const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
             const url = URL.createObjectURL(blob);
             const link = document.createElement("a");
             link.setAttribute("href", url);
             
-            // Le nom du fichier s'adapte à l'année
+            
             const activeYearTab = document.querySelector('.year-tab.active');
             const year = activeYearTab ? activeYearTab.getAttribute('data-year') : '2024';
             link.setAttribute("download", `Atlas_AI_Data_${year}.csv`);
@@ -410,16 +409,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 const axisDropdown = document.getElementById("analysis-axis");
     axisDropdown.value = "environmental";
 
-    // 2. On affiche le groupe environnemental et on masque les autres
+  
     document.getElementById("economic-detail-group").style.display = "none";
     document.getElementById("environmental-detail-group").style.display = "block";
     document.getElementById("social-detail-group").style.display = "none";
 
-    // 3. On sélectionne le bouton radio "Data centers" et on déclenche sa mise à jour
+
     const defaultRadio = document.querySelector('input[value="data_centers"]');
     if (defaultRadio) {
         defaultRadio.checked = true;
-        // Ceci force le script à charger les données des data centers sur la map
+        
         updateVisuals(); 
     }
 });

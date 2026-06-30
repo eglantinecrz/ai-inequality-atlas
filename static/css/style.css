@@ -536,47 +536,10 @@ body {
     text-decoration: underline;
     cursor: pointer;
     transition: color 0.2s ease;
-    margin-top: -10px; /* Le rapproche du post-it jaune */
+    margin-top: -10px; 
     margin-bottom: 20px;
     padding-right: 5px;
 }
 .download-csv-btn:hover {
     color: #2D3748;
-}/* =========================================
-   ADAPTATION MOBILE (APPROCHE DOUCE)
-   ========================================= */
-@media (max-width: 768px) {
-    /* 1. On libère le scroll bloqué par le scroll-snap */
-    body {
-        height: auto !important;
-        overflow-y: auto !important;
-        scroll-snap-type: none !important;
-    }
-
-    /* 2. On passe la section application en mode vertical */
-    .app-section {
-        flex-direction: column !important;
-        height: auto !important;
-    }
-
-    /* 3. On donne de la place à la carte */
-    #map-container {
-        height: 350px !important;
-        width: 100% !important;
-        flex: none !important;
-    }
-
-    /* 4. On donne de la place au panneau d'info */
-    .info-panel {
-        width: 100% !important;
-        height: auto !important;
-        flex: none !important;
-        padding: 20px !important;
-    }
-
-    /* 5. On empile les cartes de la page d'accueil */
-    .landing-grid {
-        flex-direction: column !important;
-        gap: 20px !important;
-    }
 }
