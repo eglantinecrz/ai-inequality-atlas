@@ -408,6 +408,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
-    document.getElementById("environmental-detail-group").style.display = "block";
+    document.getElementById("economic-detail-group").style.display = "none";
+    document.getElementById("environmental-detail-group").style.display = "none";
+    document.getElementById("social-detail-group").style.display = "none";
+
+    // 2. On affiche uniquement celui qui contient votre indicateur par défaut (ici, l'économique)
+    document.getElementById("economic-detail-group").style.display = "block";
+    
+    // 3. On met à jour la carte
     updateVisuals();
 });
