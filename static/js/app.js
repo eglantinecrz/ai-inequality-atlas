@@ -231,31 +231,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         mapGroup.selectAll(".google-marker").remove(); 
 
-        if (!metric.id) {
-            const countriesFeatures = mapGroup.selectAll(".country").data();
-            const activeCountries = countriesFeatures.filter(d => db[String(d.id)]);
-            
-            mapGroup.selectAll(".google-marker")
-                .data(activeCountries)
-                .enter()
-                .append("path")
-                .attr("class", "google-marker")
-                .attr("d", "M0,0 C-7,-10 -12,-15 -12,-24 A12,12 0 1,1 12,-24 C12,-15 7,-10 0,0 Z") 
-                .attr("fill", "#EA4335") 
-                .attr("stroke", "#FFFFFF")
-                .attr("stroke-width", "1.5px")
-                .attr("transform", d => {
-                    const centroid = path.centroid(d);
-                    if (centroid && !isNaN(centroid[0]) && !isNaN(centroid[1])) {
-                        return `translate(${centroid[0]}, ${centroid[1]}) scale(0.5)`;
-                    }
-                    return null;
-                })
-                .style("pointer-events", "none") 
-                .style("opacity", 0)
-                .transition().duration(500)
-                .style("opacity", 1); 
-        }
+        
 
         const legendDiv = document.getElementById("map-legend");
         const legendContinuous = document.getElementById("legend-continuous");
@@ -431,4 +407,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             document.body.removeChild(link);
         });
     }
+
+    document.getElementById("environmental-detail-group").style.display = "block";
+    updateVisuals();
 });
